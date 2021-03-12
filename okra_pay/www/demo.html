@@ -1,0 +1,149 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <style>
+            body {
+                margin-left: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Sample customer</h3><hr>
+        <div class=''>
+            <form id="create-customer col-md-6" >
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Number of accounts</label>
+                  <input type="number" min='1' class="form-control" id="accounts" aria-describedby="emailHelp" placeholder="Enter number of bank accounts">
+                </div>
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Account full name">
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Account username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Account password">
+                </div>
+                <div class="form-group">
+                    <label class="" for="banks">Bank</label>
+                    <select class="custom-select mr-sm-2" id="banks">
+                      <option selected>Choose...</option>
+                      <option value="5d6fe57a4099cc4b210bbeb3">GT Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbec0">Access Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbec2">Zenith Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbeb6">StanbicIBTC Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbeb0">Fidelity Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbeb8">Sterling Bank</option>
+                      <option value="5d6fe57a4099cc4b210bbebd">Unity Bank</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="" for="type">Account type</label>
+                    <select class="custom-select mr-sm-2" id="type">
+                      <option selected>Choose...</option>
+                      <option value="ind">Individual</option>
+                      <option value="corp">Corporate</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary create" id="create">Create</button>
+              </form>
+        </div>
+        <p>
+            <ul id="customer" hidden>
+
+            </ul>
+        </p>
+        <h3>Verify/Auth a customer's bank credentials via the Okra widget</h3><hr>
+        <div class=''>
+            
+        </div>
+        <h3>Retrieve customer's balance</h3><hr>
+        <div class="">
+            <form>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                  <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Password</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+        <script>
+            $(document).ready(function(){
+                alert('ready')
+                var noOfAccount = document.getElementById('accounts');
+                var accountName = document.getElementById('name');
+                var bank = document.getElementById('banks');
+                $(".create").on('click', createCustomer);
+                var createCustomer = function (event){
+                    event.preventDefault();
+                    alert('submitted')
+                    $('#customer').hide();
+                    $.ajax({
+                        url: 'https://api.okra.ng/v2/sandbox/customers/create',
+                        error: function(error) {
+                            console.log("error");
+                            $('#customer').show();
+                            $('#customer').html('<p>An error has occurred</p>');
+                        },
+                        data: [{
+                            "noOfAccount": $('#accounts').val,
+                            "name": $('#name').val,
+                            "bank": $('#banks').val, 
+                            "username": $('#username').val,
+                            "password": $('#password').val,
+                            "type": $('#type').val,
+                            "volume": "high",
+                            "identity": 100,
+                            "internetSpeed": 4
+                        }],
+                        success: function(data) {
+                            console.log("success");
+                            $('#customer').show();
+                            var $accounts$id = $('<li>').text('Record ID: ' + data.data.customers[0]._id);
+                            var $customerid = $('<li>').text('Customer ID: ' + data.data.customers[0].customer);
+                            var $owner = $('<li>').text('Owner ID: ' + data.data.customers[0].identity.owner);
+                            var $firstname = $('<li>').text('Owner ID: ' + data.data.customers[0].identity.firstname);
+                            var $lastname = $('<li>').text('Owner ID: ' + data.data.customers[0].identity.lastname);
+                            var $accounts = $('<li>').text('Accounts: ');
+                            var count = $('#accounts').val
+                            while(count != 0){
+                                count = count - 1;
+                                $accounts.append('<li> Owner ID: ' + data.data.customers[0].account.nuban[count] + '</li>');
+                            }
+                            var $bankid = $('<li>').text('Bank ID: ' + data.data.customers[0].account.bankDetails._id);
+                            var $bankname = $('<li>').text('Bank ID: ' + data.data.customers[0].account.bankDetails.name);
+                            $('#customer')
+                            .append($id)
+                            .append($customerid)
+                            .append($owner)
+                            .append($firstname)
+                            .append($lastname)
+                            .append($accounts)
+                            .append($bankid)
+                            .append($bankname);
+                        },
+                        type: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ4Y2Q5YzI5NzYzODFiMjA4NTgxZjMiLCJpYXQiOjE2MTUzODM5NjV9.x9gkonVoV22TaYjJpk59jqpXAZRwKz9NLbnlvrMoA_8',
+                        }
+                        });
+            }
+            })
+        </script>
+    </body>
+</html>

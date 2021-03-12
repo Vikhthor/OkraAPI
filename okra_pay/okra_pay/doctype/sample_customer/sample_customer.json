@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "autoname": "fullname",
+ "creation": "2021-03-11 10:31:54.545517",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "noofaccount",
+  "fullname",
+  "bank",
+  "username",
+  "password",
+  "type",
+  "volume",
+  "identity",
+  "internetspeed"
+ ],
+ "fields": [
+  {
+   "fieldname": "noofaccount",
+   "fieldtype": "Int",
+   "label": "Number of accounts"
+  },
+  {
+   "fieldname": "fullname",
+   "fieldtype": "Data",
+   "label": "Full name"
+  },
+  {
+   "fetch_from": "bank.bank_id",
+   "fieldname": "bank",
+   "fieldtype": "Link",
+   "label": "Bank",
+   "options": "Bank"
+  },
+  {
+   "fieldname": "username",
+   "fieldtype": "Data",
+   "label": "Username"
+  },
+  {
+   "fieldname": "password",
+   "fieldtype": "Data",
+   "label": "Password"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "ind\ncorp"
+  },
+  {
+   "default": "high",
+   "fieldname": "volume",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Volume"
+  },
+  {
+   "default": "100",
+   "fieldname": "identity",
+   "fieldtype": "Data",
+   "label": "Identity",
+   "read_only": 1
+  },
+  {
+   "default": "4",
+   "fieldname": "internetspeed",
+   "fieldtype": "Int",
+   "label": "Internet speed",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-03-11 10:48:03.644334",
+ "modified_by": "Administrator",
+ "module": "Okra Pay",
+ "name": "Sample Customer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

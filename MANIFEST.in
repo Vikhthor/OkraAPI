@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include okra_pay *.css
+recursive-include okra_pay *.csv
+recursive-include okra_pay *.html
+recursive-include okra_pay *.ico
+recursive-include okra_pay *.js
+recursive-include okra_pay *.json
+recursive-include okra_pay *.md
+recursive-include okra_pay *.png
+recursive-include okra_pay *.py
+recursive-include okra_pay *.svg
+recursive-include okra_pay *.txt
+recursive-exclude okra_pay *.pyc
