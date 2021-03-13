@@ -84,6 +84,18 @@ def get_customer(key, value):
     return response.json()
 
 @frappe.whitelist(allow_guest=True)
+def get_customers():
+    response = requests.post(
+			'https://api.okra.ng/v2/sandbox/customers/list',
+			headers={
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ4Y2Q5YzI5NzYzODFiMjA4NTgxZjMiLCJpYXQiOjE2MTUzODM5NjV9.x9gkonVoV22TaYjJpk59jqpXAZRwKz9NLbnlvrMoA_8',
+				'data': 'page=1&limit=3'
+			}
+		)
+    return response.json()
+
+@frappe.whitelist(allow_guest=True)
 def get_transaction(cust_id):
     response = requests.post(
 			'https://api.okra.ng/v2/sandbox/transactions/getByCustomer',
@@ -103,7 +115,7 @@ def get_auth(cust_id):
 				'Content-Type': 'application/x-www-form-urlencoded',
 				'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ4Y2Q5YzI5NzYzODFiMjA4NTgxZjMiLCJpYXQiOjE2MTUzODM5NjV9.x9gkonVoV22TaYjJpk59jqpXAZRwKz9NLbnlvrMoA_8'
 			},
-			data = f'customer={cust_id}&page=1&limit=1'
+			data = f'customer={cust_id}'
 		)
     return response.json()
 
