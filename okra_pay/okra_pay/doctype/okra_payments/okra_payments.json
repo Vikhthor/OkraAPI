@@ -1,0 +1,60 @@
+{
+ "actions": [],
+ "autoname": "format:{customer}-{###}",
+ "creation": "2021-03-30 22:02:44.409206",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "payment_id",
+  "customer",
+  "bank",
+  "amount",
+  "status",
+  "datetime"
+ ],
+ "fields": [
+  {
+   "fieldname": "payment_id",
+   "fieldtype": "Data",
+   "label": "Payment ID"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Data",
+   "label": "Customer"
+  },
+  {
+   "fieldname": "bank",
+   "fieldtype": "Data",
+   "label": "Bank"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Data",
+   "label": "Amount"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "datetime",
+   "fieldtype": "Data",
+   "label": "Datetime"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2021-03-30 23:51:39.149590",
+ "modified_by": "Administrator",
+ "module": "Okra Pay",
+ "name": "Okra Payments",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

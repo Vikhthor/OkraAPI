@@ -24,7 +24,6 @@ frappe.ui.form.on('Okra API', {
 							<tr>
 								<td>${cust.name}</td>
 								<td>${cust._id}</td>
-								<td>${cust.credentials[0].bank.name}</td>
 								<td>${cust.record[0]}</td>
 								<td>${cust.email[0]}</td>
 								<td>${cust.phone[0]}</td>
@@ -39,7 +38,6 @@ frappe.ui.form.on('Okra API', {
 									<tr>
 										<th>Customer name</th>
 										<th>Customer ID</th>
-										<th>Bank name</th>
 										<th>Record ID</th>
 										<th>Email</th>
 										<th>Phone no</th>

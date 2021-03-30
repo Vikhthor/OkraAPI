@@ -10,7 +10,9 @@
   "amount",
   "account_id",
   "customer_name",
-  "bank_name"
+  "bank_name",
+  "customer_id",
+  "payload"
  ],
  "fields": [
   {
@@ -42,11 +44,21 @@
    "fieldname": "bank_name",
    "fieldtype": "Data",
    "label": "Bank name"
+  },
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "label": "Customer ID"
+  },
+  {
+   "fieldname": "payload",
+   "fieldtype": "Text Editor",
+   "label": "Payload"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-22 18:08:50.255872",
+ "modified": "2021-03-24 22:36:16.341548",
  "modified_by": "Administrator",
  "module": "Okra Pay",
  "name": "Payment",
@@ -61,6 +73,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
    "share": 1,
    "write": 1
   }

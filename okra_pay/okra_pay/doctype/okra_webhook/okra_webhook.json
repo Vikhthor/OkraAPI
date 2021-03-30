@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "autoname": "format:{customer_id}",
+ "creation": "2021-03-30 21:56:22.200196",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_id",
+  "bank",
+  "auth_section",
+  "auth_status",
+  "identity_section",
+  "identity_status",
+  "identity_id",
+  "name1",
+  "bvn",
+  "phone",
+  "email",
+  "payment_section",
+  "pay_status",
+  "history",
+  "balance_section",
+  "bal_status",
+  "transaction_section",
+  "txn_status",
+  "income_section",
+  "inc_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_id",
+   "fieldtype": "Data",
+   "label": "Customer ID"
+  },
+  {
+   "fieldname": "bank",
+   "fieldtype": "Data",
+   "label": "Bank"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "auth_section",
+   "fieldtype": "Section Break",
+   "label": "Auth"
+  },
+  {
+   "fieldname": "auth_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Identity"
+  },
+  {
+   "fieldname": "identity_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "fieldname": "identity_id",
+   "fieldtype": "Data",
+   "label": "Identity ID"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "bvn",
+   "fieldtype": "Data",
+   "label": "BVN"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "payment_section",
+   "fieldtype": "Section Break",
+   "label": "Payment"
+  },
+  {
+   "fieldname": "pay_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "balance_section",
+   "fieldtype": "Section Break",
+   "label": "Balance"
+  },
+  {
+   "fieldname": "bal_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "transaction_section",
+   "fieldtype": "Section Break",
+   "label": "Transaction"
+  },
+  {
+   "fieldname": "txn_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "income_section",
+   "fieldtype": "Section Break",
+   "label": "Income"
+  },
+  {
+   "fieldname": "inc_status",
+   "fieldtype": "Data",
+   "label": "Status"
+  },
+  {
+   "columns": 6,
+   "fieldname": "history",
+   "fieldtype": "Table",
+   "label": "History",
+   "options": "Okra Payments"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2021-03-31 00:01:33.930466",
+ "modified_by": "Administrator",
+ "module": "Okra Pay",
+ "name": "Okra Webhook",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
