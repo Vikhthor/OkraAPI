@@ -120,7 +120,7 @@ def get_auth(cust_id):
     return response.json()
 
 @frappe.whitelist(allow_guest=True)
-def initiate_pay(debit, credit, amount, currency):
+def initiate_pay(debit, amount, currency, credit=None):
     response = requests.post(
 			'https://api.okra.ng/v2/sandbox/pay/initiate',
 			headers={
@@ -146,6 +146,56 @@ def verify_pay(pay_id):
 			},
 			json={
     			"payment_id": pay_id,
+			}
+		)
+    return response.json()
+@frappe.whitelist(allow_guest=True)
+def initiate_recurring(debit, amount, currency, interval, start_date, end_date, credit=None):
+    response = requests.post(
+			'https://api.okra.ng/v2/sandbox/pay/initiate',
+			headers={
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ4Y2Q5YzI5NzYzODFiMjA4NTgxZjMiLCJpYXQiOjE2MTUzODM5NjV9.x9gkonVoV22TaYjJpk59jqpXAZRwKz9NLbnlvrMoA_8'
+			},
+			json={
+    			"account_to_debit": debit,
+				"account_to_credit": credit,
+				"type": 'recurring',
+				"schedule": {
+					"interval": interval,
+					"startDate": start_date,
+					"endDate": end_date
+				},
+    			"amount": amount, 
+    			"currency": currency,
+			}
+		)
+    return response.json()
+@frappe.whitelist(allow_guest=True)
+def initiate_recurring_paylink(name, amount, currency, interval, start_date, end_date, credit="60643e1e4f03af09a5e043ad"):
+    response = requests.post(
+			'https://api.okra.ng/v2/sandbox/pay/link/create',
+			headers={
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDQ4Y2Q5YzI5NzYzODFiMjA4NTgxZjMiLCJpYXQiOjE2MTUzODM5NjV9.x9gkonVoV22TaYjJpk59jqpXAZRwKz9NLbnlvrMoA_8'
+			},
+			json={
+				"name": name,
+				"account": credit,
+				"type": 'recurring',
+				"note": "Test payment",
+				"countries": ["NG"],
+				"schedule": {
+					"interval": interval,
+					"startDate": start_date,
+					"endDate": end_date
+				},
+    			"amount": amount, 
+    			"currency": currency,
+				"data": True,
+				"success_url": "http://localhost:8000/demo-customer",
+				"callback_url": "https://blooming-anchorage-51722.herokuapp.com/api/webhook",
+				"continue_cta": "Please continue"
 			}
 		)
     return response.json()

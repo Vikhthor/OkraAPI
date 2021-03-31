@@ -511,6 +511,126 @@ frappe.ui.form.on('Okra API', {
 				}
 			})
 		}, 'Payments')
+		frm.add_custom_button('Initiate recurring', function(){
+			frappe.call({
+				method: 'okra_pay.api.api.initiate_recurring',
+				args: { 
+					debit: frm.doc.debit_account,
+					credit: frm.doc.credit_account,
+					interval: frm.doc.interval,
+					start_date: frm.doc.start_date,
+					end_date: frm.doc.end_date,
+					amount: frm.doc.amount,
+					currency: frm.doc.currency
+				},
+				freeze: true,
+				btn: $('.primary-action'),
+				async: true,
+				callback: function(result){
+					// var res = JSON.parse(result);
+					var res = result.message;
+					var html;
+					console.log(res)
+					if (!res.data.payment){
+						html = `<p>${res.message}</p>`
+					} else {
+						var pay = res.data;
+						var body =`
+							<tr>
+								<td>${pay.payment.id}</td>
+								<td>${pay.customer.account.name}</td>
+								<td>${pay.customer.account.nuban}</td>
+								<td>${pay.customer.account.id}</td>
+								<td>${pay.customer.account.bank.name}</td>
+								<td>${pay.payment.status}</td>
+								<td>${pay.payment.schedule.interval}</td>
+						  	</tr>
+							`
+						html = `
+							<h3>${res.message}</h3><hr>
+							<table border="1" bordercolor="green">
+								<thead>
+									<tr>
+										<th>Payment ID</th>
+										<th>Customer</th>
+										<th>NUBAN</th>
+										<th>Account ID</th>
+										<th>Bank</th>
+										<th>Status</th>
+										<th>Schedule</th>
+									</tr>
+								</thead>
+								<tbody>
+									${body}
+								</tbody>
+								<tfoot>
+								</tfoot>
+							</table>
+							`
+					}
+					frm.set_df_property('result', 'options', html)		
+				}
+			})
+		}, 'Payments')
+		frm.add_custom_button('Initiate recurring via link', function(){
+			frappe.call({
+				method: 'okra_pay.api.api.initiate_recurring_paylink',
+				args: {
+					name: frm.doc.link_name,
+					credit: frm.doc.credit_account,
+					interval: frm.doc.interval,
+					start_date: frm.doc.start_date,
+					end_date: frm.doc.end_date,
+					amount: frm.doc.amount,
+					currency: frm.doc.currency
+				},
+				freeze: true,
+				btn: $('.primary-action'),
+				async: true,
+				callback: function(result){
+					// var res = JSON.parse(result);
+					var res = result.message;
+					var html;
+					console.log(res)
+					if (!res.data){
+						html = `<p>${res.message}</p>`
+					} else {
+						var pay = res.data;
+						var body =`
+							<tr>
+								<td>${pay.name}</td>
+								<td>${pay.url}</td>
+								<td>${pay.amount}</td>
+								<td>${pay.account}</td>
+								<td>${pay.owner.name}</td>
+								<td>${pay.note}</td>
+						  	</tr>
+							`
+						html = `
+							<h3>${res.message}</h3><hr>
+							<table border="1" bordercolor="green">
+								<thead>
+									<tr>
+										<th>Link name</th>
+										<th>Link URL</th>
+										<th>Amount</th>
+										<th>Account ID</th>
+										<th>Owner</th>
+										<th>Note</th>
+									</tr>
+								</thead>
+								<tbody>
+									${body}
+								</tbody>
+								<tfoot>
+								</tfoot>
+							</table>
+							`
+					}
+					frm.set_df_property('result', 'options', html)		
+				}
+			})
+		}, 'Payments')
 		frm.add_custom_button('Verify payment', function(){
 			frappe.call({
 				method: 'okra_pay.api.api.verify_pay',

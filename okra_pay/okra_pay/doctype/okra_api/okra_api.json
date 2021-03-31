@@ -17,7 +17,13 @@
   "credit_account",
   "amount",
   "currency",
-  "payment_id"
+  "payment_id",
+  "recurring_column",
+  "interval",
+  "pay_via_link",
+  "link_name",
+  "start_date",
+  "end_date"
  ],
  "fields": [
   {
@@ -97,12 +103,45 @@
    "fieldname": "payment_id",
    "fieldtype": "Data",
    "label": "Payment ID"
+  },
+  {
+   "fieldname": "recurring_column",
+   "fieldtype": "Column Break",
+   "label": "Recurring"
+  },
+  {
+   "fieldname": "interval",
+   "fieldtype": "Select",
+   "label": "Interval",
+   "options": "five_minute\nfifteen_minute\nweekly\nmonthly\nyearly"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End date"
+  },
+  {
+   "default": "0",
+   "fieldname": "pay_via_link",
+   "fieldtype": "Check",
+   "label": "Pay via link"
+  },
+  {
+   "depends_on": "eval:doc.pay_via_link",
+   "fieldname": "link_name",
+   "fieldtype": "Data",
+   "label": "Link name"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2021-03-13 16:12:32.925099",
+ "modified": "2021-03-31 10:11:35.702687",
  "modified_by": "Administrator",
  "module": "Okra Pay",
  "name": "Okra API",
