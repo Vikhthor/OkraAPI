@@ -1,6 +1,5 @@
 {
  "actions": [],
- "autoname": "format:{customer_id}",
  "creation": "2021-03-30 21:56:22.200196",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -139,7 +138,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2021-03-31 00:01:33.930466",
+ "modified": "2021-03-31 08:46:24.829531",
  "modified_by": "Administrator",
  "module": "Okra Pay",
  "name": "Okra Webhook",
